@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Page</title>
+  <style>
+    body {
+      background-color: skyblue;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 400px;
+      margin: 50px auto;
+      background-color: #fff;
+      padding: 30px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #999;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form label {
+      display: block;
+      margin: 10px 0 5px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 3px;
+      border: 1px solid #aaa;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .gender {
+      margin-top: 10px;
+    }
+
+    .gender label {
+      margin-right: 10px;
+    }
+
+    .checkbox {
+      margin-top: 15px
+    }
+
+    .buttons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      background-color: red;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    button:hover:enabled {
+      background-color: darkred;
+    }
+
+    #thankYouMessage {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Registration Page</h1>
+    <form id="registrationForm">
+      <label>First Name <input type="text" name="firstname" required></label>
+      <label>Last Name <input type="text" name="lastname" required></label>
+      <label>Date Of Birth <input type="date" name="dob" required></label>
+      <label>Email <input type="email" name="email" required></label>
+
+      <div class="gender">
+        <label>Gender</label>
+        <label><input type="radio" name="gender" value="Male" required> Male</label>
+        <label><input type="radio" name="gender" value="Female"> Female</label>
+      </div>
+
+      <label>Phone No <input type="tel" name="phone" pattern="[0-9]{10}" required></label>
+      <label>Address <input type="text" name="address" required></label>
+
+      <label>Branch
+        <select name="branch" required>
+          <option value="">--Select Branch--</option>
+          <option value="CSE">CSE</option>
+          <option value="ECE">ECE</option>
+          <option value="EEE">EEE</option>
+          <option value="MECH">MECH</option>
+        </select>
+      </label>
+
+      <label class="checkbox">
+        <input type="checkbox" id="termsCheckbox" name="terms"> Accept terms and conditions
+      </label>
+
+      <div class="buttons">
+        <button type="submit" id="submitBtn" disabled>Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+
+    <div id="thankYouMessage"></div>
+  </div>
+
+  <script>
+    // Enable/disable submit button based on checkbox
+    document.getElementById("termsCheckbox").addEventListener("change", function () {
+      document.getElementById("submitBtn").disabled = !this.checked;
+    });
+
+    // Show thank you message on form submit
+    document.getElementById("registrationForm").addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent default submission
+      document.getElementById("thankYouMessage").textContent = "Thanks for Registration!";
+      this.reset(); // Reset the form
+      document.getElementById("submitBtn").disabled = true; // Disable submit again
+    });
+  </script>
+
+</body>
+</html>
